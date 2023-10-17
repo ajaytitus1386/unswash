@@ -2,11 +2,11 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
     container: {
       center: true,
@@ -50,6 +50,38 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Custom Additions
+        text: {
+          light: {
+            100: "#FFFFFF",
+            200: "#E5E5E5",
+            300: "#C4C4C4",
+            400: "#A7A7A7",
+            500: "#4F4F4F",
+            600: "#333333",
+          },
+          dark: {
+            100: "#333333",
+            200: "#4F4F4F",
+            300: "#A7A7A7",
+            400: "#C4C4C4",
+            500: "#E5E5E5",
+            600: "#FFFFFF",
+          },
+        },
+        bg: {
+          light: {
+            navbar: "#FFFFFF",
+            primary: "#FFFFFF",
+            card: "#FFFFFF",
+          },
+          dark: {
+            navbar: "#232323",
+            primary: "#232323",
+            card: "#141414",
+          },
+        },
+        //
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -69,6 +101,11 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      // Custom Additions
+      fontFamily: {
+        montserrat: ["Montserrat", "sans-serif"],
+        pattaya: ["Pattaya", "cursive"],
       },
     },
   },
