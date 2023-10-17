@@ -64,7 +64,7 @@ const Navbar = () => {
               <Menu className="text-text-light-500 dark:text-text-dark-500 text-lg" />
             </button>
           </SheetTrigger>
-          <SheetContent className="h-screen flex flex-col justify-between items-start">
+          <SheetContent className="h-screen flex flex-col justify-between items-start bg-bg-light-primary dark:bg-bg-dark-primary">
             <NavElements />
             <SheetFooter>Made by Ajay Titus</SheetFooter>
           </SheetContent>
