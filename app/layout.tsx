@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <AppProvider>
         <body
-          className={`${montserrat.className} h-screen w-screen bg-bg-light-primary dark:bg-bg-dark-primary`}
+          className={`${montserrat.className} flex flex-col h-screen w-screen bg-bg-light-primary dark:bg-bg-dark-primary`}
         >
           <Navbar />
           {children}
