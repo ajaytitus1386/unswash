@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { Search, Menu } from "lucide-react"
+import { Search, Menu, SunMoonIcon } from "lucide-react"
 import {
   Sheet,
   SheetContent,
@@ -39,9 +39,7 @@ const NavElements = () => {
         Community
       </Link>
       <div className="flex items-center justify-start md:justify-center space-x-2">
-        <label className="text-text-light-600 dark:text-text-dark-600 text-sm">
-          Dark Mode
-        </label>
+        <SunMoonIcon className="text-text-light-600 dark:text-text-dark-600" />
         <Switch checked={theme === "dark"} onCheckedChange={toggleTheme} />
       </div>
     </div>
