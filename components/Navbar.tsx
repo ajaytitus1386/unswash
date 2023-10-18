@@ -50,7 +50,7 @@ const NavElements = () => {
 
 const Navbar = () => {
   return (
-    <div className="px-6 py-4 flex justify-between items-center">
+    <div className="fixed w-full z-30 top-0 px-6 py-4 bg-bg-light-primary dark:bg-bg-dark-primary flex justify-between items-center">
       <h1 className="font-pattaya text-2xl text-text-light-600 dark:text-text-dark-600">
         Image Gallery
       </h1>
