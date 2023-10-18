@@ -106,6 +106,7 @@ module.exports = {
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
         pattaya: ["Pattaya", "cursive"],
+        poppins: ["Poppins", "sans-serif"],
       },
     },
   },
