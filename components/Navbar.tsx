@@ -19,7 +19,7 @@ const NavElements = () => {
   const { toggleTheme, theme } = useAppContext()
 
   return (
-    <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+    <div className="flex flex-col md:flex-row md:items-center md:justify-center space-y-4 md:space-y-0 md:space-x-4">
       <Link
         href="#"
         className="text-text-light-600 dark:text-text-dark-600 text-sm"
@@ -38,7 +38,7 @@ const NavElements = () => {
       >
         Community
       </Link>
-      <div className="flex items-center justify-start space-x-2">
+      <div className="flex items-center justify-start md:justify-center space-x-2">
         <label className="text-text-light-600 dark:text-text-dark-600 text-sm">
           Dark Mode
         </label>
@@ -54,7 +54,12 @@ const Navbar = () => {
       <h1 className="font-pattaya text-2xl text-text-light-600 dark:text-text-dark-600">
         Image Gallery
       </h1>
-      <div className="flex items-center justify-center space-x-2">
+      {/* Desktop Elements */}
+      <div className="hidden md:flex items-center justify-center">
+        <NavElements />
+      </div>
+      {/* Moblie Elements */}
+      <div className="md:hidden flex items-center justify-center space-x-2">
         <button type="button">
           <Search className="text-text-light-500 dark:text-text-dark-500 text-lg" />
         </button>
