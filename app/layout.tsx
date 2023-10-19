@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar"
 import "./globals.css"
 import { Montserrat } from "next/font/google"
 import { AppProvider } from "@/components/context/AppContext"
+import { Toaster } from "@/components/ui/toaster"
 
 const montserrat = Montserrat({ subsets: ["latin"] })
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
+          <Toaster />
         </body>
       </AppProvider>
     </html>
