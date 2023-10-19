@@ -12,7 +12,9 @@ import Image from "next/image"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import {
   DownloadIcon,
+  InfoIcon,
   InstagramIcon,
+  Share2Icon,
   ThumbsUpIcon,
   TwitterIcon,
   UserIcon,
@@ -73,7 +75,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className="bg-bg-light-card dark:bg-bg-dark-card border-none shadow-md rounded-md max-h-screen my-8 overflow-auto">
-        <div className="rounded-t-md p-0 overflow-hidden">
+        <div className="relative rounded-t-md p-0 overflow-hidden">
           <Image
             height={fullImageData?.height}
             width={fullImageData?.width}
@@ -86,6 +88,22 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
             onError={() => setImageError(true)}
             blurDataURL={partialImageData.urls.small}
           />
+          <div className="absolute bottom-4 right-4 w-full flex justify-end items-center space-x-2">
+            <Button
+              variant={"outline"}
+              className="border-bg-light-tag text-bg-light-tag border-2 font-bold bg-black bg-opacity-25"
+            >
+              <Share2Icon size={16} />
+              Share
+            </Button>
+            <Button
+              variant={"outline"}
+              className="border-bg-light-tag text-bg-light-tag border-2 font-bold bg-black bg-opacity-25"
+            >
+              <InfoIcon size={16} />
+              Info
+            </Button>
+          </div>
         </div>
         <div className="flex flex-col space-y-2">
           {/* Avatar and Download */}
