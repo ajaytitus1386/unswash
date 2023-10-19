@@ -22,12 +22,14 @@ const NavElements = () => {
 
   return (
     <div className="flex flex-col md:flex-row md:items-center md:justify-center space-y-4 md:space-y-0 md:space-x-4">
+      {/* Only visible in sheet on mobile */}
       <Link
         href="/"
-        className="font-pattaya text-2xl text-text-light-600 dark:text-text-dark-600"
+        className="block md:hidden font-pattaya text-2xl text-text-light-600 dark:text-text-dark-600"
       >
         Image Gallery
       </Link>
+      {/*  */}
       <Link
         href="#"
         className="text-text-light-600 dark:text-text-dark-600 text-sm"
