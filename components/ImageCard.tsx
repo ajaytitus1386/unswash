@@ -32,7 +32,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageData }) => {
         />
       </CardContent>
       <CardFooter className="flex flex-row justify-between items-center px-2 py-1">
-        <div className="flex space-x-1 justify-center items-center py-1">
+        <div className="flex space-x-1 justify-start items-center py-1 max-w-[90%] overflow-hidden">
           <a href={imageData.user.links.html}>
             <Avatar>
               <AvatarImage
