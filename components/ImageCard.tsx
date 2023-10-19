@@ -35,7 +35,10 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageData }) => {
         <div className="flex space-x-1 justify-center items-center py-1">
           <a href={imageData.user.links.html}>
             <Avatar>
-              <AvatarImage src={imageData.user.profile_image.medium} />
+              <AvatarImage
+                src={imageData.user.profile_image.medium}
+                alt="avatar"
+              />
               <AvatarFallback>
                 <UserIcon className="text-text-light-500 dark:text-text-dark-500 text-lg" />
               </AvatarFallback>
