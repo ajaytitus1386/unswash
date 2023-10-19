@@ -27,7 +27,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageData }) => {
           height={imageData.height}
           width={imageData.width}
           src={imageError ? "images/image404.png" : imageData.urls.small}
-          alt={imageData.description}
+          alt={imageData.description || "alt"}
           onError={() => setImageError(true)}
         />
       </CardContent>
