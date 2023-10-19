@@ -56,7 +56,7 @@ const SearchBar = ({ variant, onClear }: SearchProps) => {
         onSubmit={(e) => e.preventDefault()}
         className={cn(
           "flex space-x-1 px-2 py-1 justify-center items-center bg-bg-light-card dark:bg-bg-dark-card rounded-md",
-          variant === "hero" ? "w-full" : "hidden md:flex w-96"
+          variant === "hero" ? "w-full" : "flex w-auto md:w-96"
         )}
       >
         <button type="submit" onClick={() => search(searchQuery)}>
@@ -76,7 +76,7 @@ const SearchBar = ({ variant, onClear }: SearchProps) => {
             autocompletePopoverTrigger.current?.click()
           }}
         />
-        {searchQuery && (
+        {(searchQuery || variant === "navbar") && (
           <button type="button" onClick={clearQuery}>
             <XIcon className="text-text-light-300 dark:text-text-dark-300" />
           </button>
