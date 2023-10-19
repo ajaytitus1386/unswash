@@ -22,6 +22,7 @@ import Link from "next/link"
 import { fetchSingleImage } from "@/lib/data/images"
 import { fetchUserProfile } from "@/lib/data/users"
 import { Skeleton } from "./ui/skeleton"
+import { saveAs } from "file-saver"
 
 interface ImageDialogProps {
   children: React.ReactNode
@@ -30,7 +31,7 @@ interface ImageDialogProps {
 
 const Tag = ({ children }: { children: string }) => {
   return (
-    <div className="bg-bg-light-tag dark:bg-bg-dark-tag px-2 py-1">
+    <div className="bg-bg-light-tag dark:bg-bg-dark-tag text-text-light-500 dark:text-text-light-500 px-2 py-1 rounded-md">
       {children}
     </div>
   )
@@ -58,6 +59,15 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
     getFullImageData()
     getUserProfile()
   }, [partialImageData.id, partialImageData.user.username])
+
+  const downloadImage = async () => {
+    saveAs(
+      fullImageData?.urls.regular || partialImageData.urls.regular,
+      fullImageData
+        ? `${fullImageData?.user?.username}-${fullImageData?.id}.jpg`
+        : "image.jpg"
+    )
+  }
 
   return (
     <Dialog>
@@ -106,8 +116,11 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
             </div>
             {/* Download */}
             <div className="flex flex-col space-y-1">
-              <Button className="bg-bg-light-success dark:bg-bg-dark-success font-bold py-2 px-4 sm:py-4 sm:px-12">
-                Download Image
+              <Button
+                onClick={downloadImage}
+                className="bg-bg-light-success dark:bg-bg-dark-success font-bold text-white rounded-md py-2 px-4 sm:py-4 sm:px-12"
+              >
+                Download
               </Button>
               <div className="flex items-center justify-end space-x-2">
                 <div className="flex justify-center items-end space-x-1">
