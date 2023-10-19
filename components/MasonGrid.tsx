@@ -19,7 +19,7 @@ const MasonGrid: React.FC<MasonGridProps> = ({ images }) => {
         640: 2,
         410: 1,
       }}
-      className="w-auto py-8 px-2 flex space-x-2 sm:space-x-4 sm:px-4 md:space-x-8 md:px-8"
+      className="w-auto flex space-x-2 sm:space-x-4 md:space-x-8"
       columnClassName="bg-clip-padding"
     >
       {images.map((imageData) => (
