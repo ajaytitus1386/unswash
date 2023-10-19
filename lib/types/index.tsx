@@ -1,21 +1,21 @@
-export interface AutocompleteResponse {
+export type AutocompleteResponse = {
   fuzzy: AutocompleteResponseItem[]
   autocomplete: AutocompleteResponseItem[]
   did_you_mean: AutocompleteResponseItem[]
 }
 
-export interface AutocompleteResponseItem {
+export type AutocompleteResponseItem = {
   query: string
   priority: number
 }
 
-export interface ImageSearchResponse {
+export type ImageSearchResponse = {
   total: number
   total_pages: number
   results: ImageCardData[]
 }
 
-export interface ImageCardData {
+export type ImageCardData = {
   id: string
   created_at: string
   updated_at: string
@@ -32,7 +32,7 @@ export interface ImageCardData {
   links: Links
 }
 
-export interface User {
+export type User = {
   id: string
   username: string
   name: string
@@ -48,13 +48,13 @@ export interface User {
   links: UserLinks
 }
 
-export interface ProfileImage {
+export type ProfileImage = {
   small: string
   medium: string
   large: string
 }
 
-export interface UserLinks {
+export type UserLinks = {
   self: string
   html: string
   photos: string
@@ -62,7 +62,7 @@ export interface UserLinks {
   portfolio: string
 }
 
-export interface CurrentUserCollection {
+export type CurrentUserCollection = {
   id: number
   title: string
   published_at: string
@@ -72,7 +72,7 @@ export interface CurrentUserCollection {
   user: any
 }
 
-export interface Urls {
+export type Urls = {
   raw: string
   full: string
   regular: string
@@ -80,7 +80,7 @@ export interface Urls {
   thumb: string
 }
 
-export interface Links {
+export type Links = {
   self: string
   html: string
   download: string
