@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import Search from "./Search"
+import SearchBar from "./Searchbar"
 
 const Hero = () => {
   return (
@@ -20,7 +20,7 @@ const Hero = () => {
         <p className="text-center text-xs text-white">
           Over 2.4 million+ stock images by our talented community
         </p>
-        <Search variant="hero" />
+        <SearchBar variant="hero" />
       </div>
     </div>
   )

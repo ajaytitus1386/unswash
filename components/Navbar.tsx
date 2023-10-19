@@ -14,6 +14,7 @@ import {
 import Link from "next/link"
 import { Switch } from "./ui/switch"
 import { useAppContext } from "./context/AppContext"
+import SearchBar from "./Searchbar"
 
 const NavElements = () => {
   const { toggleTheme, theme } = useAppContext()
@@ -48,10 +49,14 @@ const NavElements = () => {
 
 const Navbar = () => {
   return (
-    <div className="fixed w-full z-30 top-0 px-6 py-4 bg-bg-light-primary dark:bg-bg-dark-primary flex justify-between items-center">
+    <div className="fixed w-full z-40 top-0 px-6 py-4 bg-bg-light-primary dark:bg-bg-dark-primary flex justify-between items-center">
       <h1 className="font-pattaya text-2xl text-text-light-600 dark:text-text-dark-600">
         Image Gallery
       </h1>
+      <div className="flex flex-col">
+        <SearchBar variant="navbar" />
+        {/* Popover appears here */}
+      </div>
       {/* Desktop Elements */}
       <div className="hidden md:flex items-center justify-center">
         <NavElements />

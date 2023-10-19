@@ -1,3 +1,20 @@
+export interface AutocompleteResponse {
+  fuzzy: AutocompleteResponseItem[]
+  autocomplete: AutocompleteResponseItem[]
+  did_you_mean: AutocompleteResponseItem[]
+}
+
+export interface AutocompleteResponseItem {
+  query: string
+  priority: number
+}
+
+export interface ImageSearchResponse {
+  total: number
+  total_pages: number
+  results: ImageCardData[]
+}
+
 export interface ImageCardData {
   id: string
   created_at: string
