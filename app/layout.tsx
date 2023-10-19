@@ -23,7 +23,8 @@ export default function RootLayout({
           className={`${montserrat.className} flex flex-col h-screen w-screen max-w-full bg-bg-light-primary dark:bg-bg-dark-primary`}
         >
           <Navbar />
-          {children}
+          {/* Adjust for fixed Navbar */}
+          <main className="mt-20">{children}</main>
           <Toaster />
         </body>
       </AppProvider>
