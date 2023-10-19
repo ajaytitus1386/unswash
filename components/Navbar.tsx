@@ -50,9 +50,12 @@ const NavElements = () => {
 const Navbar = () => {
   return (
     <div className="fixed w-full z-40 top-0 px-6 py-4 bg-bg-light-primary dark:bg-bg-dark-primary flex justify-between items-center">
-      <h1 className="font-pattaya text-2xl text-text-light-600 dark:text-text-dark-600">
+      <Link
+        href="/"
+        className="font-pattaya text-2xl text-text-light-600 dark:text-text-dark-600"
+      >
         Image Gallery
-      </h1>
+      </Link>
       <div className="flex flex-col">
         <SearchBar variant="navbar" />
         {/* Popover appears here */}
