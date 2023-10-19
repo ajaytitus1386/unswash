@@ -1,3 +1,45 @@
+/* ------------------------- User Profiles Unsplash ------------------------- */
+
+export type ProfileData = {
+  id: string
+  updated_at: string
+  username: string
+  name: string
+  first_name: string
+  last_name: string
+  instagram_username: string
+  twitter_username: string
+  portfolio_url: any
+  bio: string
+  location: string
+  total_likes: number
+  total_photos: number
+  total_collections: number
+  followed_by_user: boolean
+  followers_count: number
+  following_count: number
+  downloads: number
+  social: Social
+  profile_image: ProfileImage
+  badge: Badge
+  links: Links
+}
+
+export type Social = {
+  instagram_username: string
+  portfolio_url: string
+  twitter_username: string
+}
+
+export type Badge = {
+  title: string
+  primary: boolean
+  slug: string
+  link: string
+}
+
+/* -------------------------------------------------------------------------- */
+
 export type AutocompleteResponse = {
   fuzzy: AutocompleteResponseItem[]
   autocomplete: AutocompleteResponseItem[]
@@ -8,12 +50,66 @@ export type AutocompleteResponseItem = {
   query: string
   priority: number
 }
+/* -------------------------------------------------------------------------- */
 
 export type ImageSearchResponse = {
   total: number
   total_pages: number
   results: ImageCardData[]
 }
+
+/* -------------------------------------------------------------------------- */
+/* ------------------- API Response from get Single Image ------------------- */
+
+export type ImageFullData = {
+  id: string
+  created_at: string
+  updated_at: string
+  width: number
+  height: number
+  color: string
+  blur_hash: string
+  downloads: number
+  likes: number
+  liked_by_user: boolean
+  public_domain: boolean
+  description: string
+  exif: Exif
+  location: Location
+  tags: Tag[]
+  current_user_collections: CurrentUserCollection[]
+  urls: Urls
+  links: Links
+  user: User
+}
+
+export type Exif = {
+  make: string
+  model: string
+  name: string
+  exposure_time: string
+  aperture: string
+  focal_length: string
+  iso: number
+}
+
+export type Location = {
+  city: string
+  country: string
+  position: Position
+}
+
+export type Position = {
+  latitude: number
+  longitude: number
+}
+
+export type Tag = {
+  title: string
+}
+
+/* -------------------------------------------------------------------------- */
+/* ------------------ API response from get list of Images ------------------ */
 
 export type ImageCardData = {
   id: string
