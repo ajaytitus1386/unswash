@@ -21,7 +21,7 @@ const Home = () => {
   useEffect(() => {
     async function getHomeData() {
       const initialImages = await fetchHomeImages()
-
+      if (!initialImages) return
       setImages(initialImages)
     }
     //Reset the page number to 1
@@ -34,6 +34,7 @@ const Home = () => {
     async function getQueryImages() {
       if (searchQuery) {
         const queryImages = await searchImages(searchQuery)
+        if (!queryImages) return
         setImages(queryImages.results)
         setResultCount(queryImages.total)
       }
@@ -48,10 +49,12 @@ const Home = () => {
 
     if (searchQuery) {
       const queryImages = await searchImages(searchQuery, pagesLoaded + 1)
+      if (!queryImages) return
       setImages(images.concat(queryImages.results))
       setPagesLoaded(pagesLoaded + 1)
     } else {
       const queryImages = await fetchHomeImages(pagesLoaded + 1)
+      if (!queryImages) return
       setImages(images.concat(queryImages))
       setPagesLoaded(pagesLoaded + 1)
     }
