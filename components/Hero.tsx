@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import Search from "./Search"
+import SearchBar from "./Searchbar"
 
 const Hero = () => {
   return (
@@ -9,7 +9,7 @@ const Hero = () => {
       style={{
         backgroundImage: "url(/images/hero.jpg)",
       }}
-      className="relative z-1 w-full h-1/2 2xl:h-1/3 bg-no-repeat bg-cover bg-center"
+      className="relative z-1 w-full h-[50vh] 2xl:h-[33vh] bg-no-repeat bg-cover bg-center"
     >
       {/* To Top Darkening Gradient */}
       <div className="absolute z-2 w-full h-full top-0 left-0 bg-gradient-to-t from-black to-transparent"></div>
@@ -20,7 +20,7 @@ const Hero = () => {
         <p className="text-center text-xs text-white">
           Over 2.4 million+ stock images by our talented community
         </p>
-        <Search variant="hero" />
+        <SearchBar variant="hero" />
       </div>
     </div>
   )
