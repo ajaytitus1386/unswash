@@ -8,6 +8,10 @@ import {
 
 export const fetchHomeImages = async () => {
   const res = await axios.get("https://api.unsplash.com/photos", {
+    params: {
+      page: 1,
+      per_page: 15,
+    },
     headers: {
       Authorization: `Client-ID ${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`,
     },
