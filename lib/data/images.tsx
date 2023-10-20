@@ -6,11 +6,14 @@ import {
   ImageSearchResponse,
 } from "../types"
 
-export const fetchHomeImages = async () => {
+export const fetchHomeImages = async (
+  pageNo: number = 1,
+  perPage: number = 10
+) => {
   const res = await axios.get("https://api.unsplash.com/photos", {
     params: {
-      page: 1,
-      per_page: 15,
+      page: pageNo,
+      per_page: perPage,
     },
     headers: {
       Authorization: `Client-ID ${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`,
@@ -32,11 +35,16 @@ export const fetchSingleImage = async (id: string) => {
   return image
 }
 
-export const searchImages = async (query: string, pageNo: number = 1) => {
+export const searchImages = async (
+  query: string,
+  pageNo: number = 1,
+  perPage: number = 10
+) => {
   const res = await axios.get("https://api.unsplash.com/search/photos", {
     params: {
       query,
       page: pageNo,
+      per_page: perPage,
     },
     headers: {
       Authorization: `Client-ID ${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`,
