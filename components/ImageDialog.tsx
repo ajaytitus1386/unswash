@@ -25,6 +25,7 @@ import { fetchSingleImage } from "@/lib/data/images"
 import { fetchUserProfile } from "@/lib/data/users"
 import { Skeleton } from "./ui/skeleton"
 import { saveAs } from "file-saver"
+import { toast } from "./ui/use-toast"
 
 interface ImageDialogProps {
   children: React.ReactNode
@@ -52,11 +53,13 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
   useEffect(() => {
     const getFullImageData = async () => {
       const image = await fetchSingleImage(partialImageData.id)
+      if (!image) return
       setFullImageData(image)
     }
 
     const getUserProfile = async () => {
       const profile = await fetchUserProfile(partialImageData.user.username)
+      if (!profile) return
       setUserProfile(profile)
     }
     getFullImageData()
@@ -70,6 +73,23 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
         ? `${fullImageData?.user?.username}-${fullImageData?.id}.jpg`
         : "image.jpg"
     )
+  }
+
+  const copyToClipboard = async () => {
+    const imageUrl = fullImageData?.links?.html || partialImageData.links?.html
+
+    if ("clipboard" in navigator) {
+      await navigator.clipboard.writeText(imageUrl)
+      toast({
+        title: "Copied to clipboard!",
+        description: "You can now paste the link anywhere.",
+      })
+    } else {
+      toast({
+        title: "Uh oh, we couldn't copy the link!",
+        description: "Please try again later.",
+      })
+    }
   }
 
   return (
@@ -92,17 +112,11 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
           <div className="absolute bottom-4 right-4 w-full flex justify-end items-center space-x-2">
             <Button
               variant={"outline"}
+              onClick={copyToClipboard}
               className="border-bg-light-tag text-bg-light-tag border-2 font-bold bg-black bg-opacity-25"
             >
               <Share2Icon size={16} />
               Share
-            </Button>
-            <Button
-              variant={"outline"}
-              className="border-bg-light-tag text-bg-light-tag border-2 font-bold bg-black bg-opacity-25"
-            >
-              <InfoIcon size={16} />
-              Info
             </Button>
           </div>
         </div>
