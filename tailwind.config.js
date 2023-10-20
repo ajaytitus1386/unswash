@@ -71,14 +71,18 @@ module.exports = {
         },
         bg: {
           light: {
+            tag: "#ECECEC",
             navbar: "#FFFFFF",
             primary: "#FFFFFF",
             card: "#FFFFFF",
+            success: "#3CB46E",
           },
           dark: {
+            tag: "#ECECEC",
             navbar: "#232323",
             primary: "#232323",
             card: "#141414",
+            success: "#3CB46E",
           },
         },
         //

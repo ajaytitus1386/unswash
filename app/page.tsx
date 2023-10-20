@@ -1,23 +1,63 @@
+"use client"
+
 import Hero from "@/components/Hero"
 import MasonGrid from "@/components/MasonGrid"
-import { fetchHomeImages } from "@/lib/data/images"
+import SearchResultsHeader from "@/components/SearchResultsHeader"
+import { fetchHomeImages, searchImages } from "@/lib/data/images"
+import { ImageCardData } from "@/lib/types"
 import Image from "next/image"
-import React from "react"
+import { useSearchParams } from "next/navigation"
+import React, { useEffect, useState } from "react"
 
-async function getHomeData() {
-  const images = await fetchHomeImages()
+const Home = () => {
+  const params = useSearchParams()
+  const searchQuery = params.get("search")
+  const [images, setImages] = useState<ImageCardData[] | null>(null)
+  const [resultCount, setResultCount] = useState(0)
+  const [pagesLoaded, setPagesLoaded] = useState(1)
 
-  return images
-}
+  useEffect(() => {
+    async function getHomeData() {
+      const initialImages = await fetchHomeImages()
 
-const Home = async () => {
-  const images = await getHomeData()
+      setImages(initialImages)
+    }
+    getHomeData()
+  }, [])
+
+  useEffect(() => {
+    async function getQueryImages() {
+      if (searchQuery) {
+        const queryImages = await searchImages(searchQuery)
+        setImages(queryImages.results)
+        setResultCount(queryImages.total)
+      }
+    }
+    getQueryImages()
+  }, [params, searchQuery])
+
   return (
     <div className="w-full h-full">
-      <Hero />
+      {!searchQuery && <Hero />}
 
-      {images.length > 0 ? (
-        <MasonGrid images={images} />
+      {images ? (
+        images.length > 0 ? (
+          <div className="py-8 px-2 sm:px-4 md:px-8">
+            {searchQuery && (
+              <SearchResultsHeader
+                query={searchQuery}
+                resultsCount={resultCount}
+              />
+            )}
+            <MasonGrid images={images} />
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center">
+            <p className="text-text-light-400 dark:text-text-dark-400 font-bold text-xl">
+              No results found
+            </p>
+          </div>
+        )
       ) : (
         <div className="flex flex-col items-center justify-center">
           <Image
