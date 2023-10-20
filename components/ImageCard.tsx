@@ -22,8 +22,10 @@ interface ImageCardProps {
 const ImageCard: React.FC<ImageCardProps> = ({ imageData }) => {
   const [imageError, setImageError] = useState(false)
   return (
+    // Image Popup Wrapper
     <ImageDialog partialImageData={imageData}>
       <Card className="bg-bg-light-card dark:bg-bg-dark-card border-none shadow-md rounded-md my-4 sm:my-8">
+        {/* Image */}
         <CardContent className="rounded-t-md p-0 overflow-hidden">
           <Image
             height={imageData.height}
@@ -33,6 +35,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageData }) => {
             onError={() => setImageError(true)}
           />
         </CardContent>
+        {/* User Details */}
         <CardFooter className="flex flex-row justify-between items-center px-2 py-1">
           <div className="flex space-x-1 justify-start items-center py-1 max-w-[90%] overflow-hidden">
             <a href={imageData.user.links.html}>

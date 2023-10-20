@@ -16,6 +16,7 @@ const Home = () => {
   const [resultCount, setResultCount] = useState(0)
   const [pagesLoaded, setPagesLoaded] = useState(1)
 
+  // Fetch initial images
   useEffect(() => {
     async function getHomeData() {
       const initialImages = await fetchHomeImages()
@@ -25,6 +26,7 @@ const Home = () => {
     getHomeData()
   }, [])
 
+  // Fetch images when query changes
   useEffect(() => {
     async function getQueryImages() {
       if (searchQuery) {
@@ -38,8 +40,10 @@ const Home = () => {
 
   return (
     <div className="w-full h-full">
+      {/* Hero */}
       {!searchQuery && <Hero />}
 
+      {/* Image Grid */}
       {images ? (
         images.length > 0 ? (
           <div className="py-8 px-2 sm:px-4 md:px-8">

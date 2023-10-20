@@ -62,6 +62,7 @@ const SearchBar = ({ variant, onClear }: SearchProps) => {
         <button type="submit" onClick={() => search(searchQuery)}>
           <SearchIcon className="text-text-light-300 dark:text-text-dark-300" />
         </button>
+        {/* Search Input */}
         <Input
           ref={searchInputRef}
           className="bg-bg-light-card dark:bg-bg-dark-card border-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-transparent"
