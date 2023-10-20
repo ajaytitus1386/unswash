@@ -48,6 +48,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
   const [imageError, setImageError] = useState(false)
   const [isHighResImageLoaded, setIsHighResImageLoaded] = useState(false)
 
+  // Fetch more image details and user profile
   useEffect(() => {
     const getFullImageData = async () => {
       const image = await fetchSingleImage(partialImageData.id)
