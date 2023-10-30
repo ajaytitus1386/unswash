@@ -87,9 +87,7 @@ const SearchBar = ({ variant, onClear }: SearchProps) => {
         <PopoverTrigger ref={autocompletePopoverTrigger}></PopoverTrigger>
         {autocompleteSuggestions.length > 0 && (
           <PopoverContent
-            onOpenAutoFocus={(e: React.FocusEvent<HTMLElement>) =>
-              e.preventDefault()
-            }
+            onOpenAutoFocus={(e: Event) => e.preventDefault()}
             className={cn(
               "flex flex-col space-y-1 items-start justify-center w-[80vw] px-0 -mt-4 bg-bg-light-card dark:bg-bg-dark-card",
               variant === "navbar" && "z-50 w-96 mt-0"
