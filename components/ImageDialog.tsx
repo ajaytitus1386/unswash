@@ -30,6 +30,8 @@ import { saveAs } from "file-saver"
 import { toast } from "./ui/use-toast"
 import { FacebookShareButton, TwitterShareButton } from "react-share"
 
+import { cn } from "@/lib/utils"
+
 interface ImageDialogProps {
   children: React.ReactNode
   partialImageData: ImageCardData
@@ -38,6 +40,10 @@ interface ImageDialogProps {
 interface ShareDialogProps {
   fullImageData?: ImageFullData
   partialImageData: ImageCardData
+}
+
+interface InfoToggleProps {
+  toggleInfo: () => void
 }
 
 const ShareDialog: React.FC<ShareDialogProps> = ({
@@ -107,6 +113,18 @@ const ShareDialog: React.FC<ShareDialogProps> = ({
   )
 }
 
+const InfoToggle: React.FC<InfoToggleProps> = ({ toggleInfo }) => {
+  return (
+    <Button
+      onClick={toggleInfo}
+      className="flex items-center justify-center px-2 py-1 rounded-md space-x-1 border-bg-light-tag text-bg-light-tag border-2 font-bold bg-black bg-opacity-0 hover:bg-opacity-25"
+    >
+      <InfoIcon size={16} />
+      <p>Info</p>
+    </Button>
+  )
+}
+
 const Tag = ({ children }: { children: string }) => {
   return (
     <div className="bg-bg-light-tag dark:bg-bg-dark-tag text-text-light-500 dark:text-text-light-500 px-2 py-1 rounded-md">
@@ -122,6 +140,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
   const [fullImageData, setFullImageData] = useState<ImageFullData | null>(null)
   const [userProfile, setUserProfile] = useState<ProfileData | null>(null)
   const [imageError, setImageError] = useState(false)
+  const [showInfo, setShowInfo] = useState(false)
   const [isHighResImageLoaded, setIsHighResImageLoaded] = useState(false)
 
   // Fetch more image details and user profile
@@ -150,6 +169,10 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
     )
   }
 
+  const toggleInfo = () => {
+    setShowInfo(!showInfo)
+  }
+
   return (
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
@@ -167,11 +190,26 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
             onError={() => setImageError(true)}
             blurDataURL={partialImageData.urls.small}
           />
+          {showInfo && (
+            <div
+              className={cn(
+                "absolute top-0 left-0 w-full h-full bg-black bg-opacity-75 flex flex-col justify-center items-center space-y-1 px-4 pb-8 overflow-y-auto animate-fade-in"
+              )}
+            >
+              <h1 className="text-text-light-400 dark:text-text-dark-400 font-bold">
+                Description
+              </h1>
+              <p className="text-text-light-400 dark:text-text-dark-400 font-poppins italic font-semibold text-xs">
+                {fullImageData?.description || partialImageData.description}
+              </p>
+            </div>
+          )}
           <div className="absolute bottom-4 right-4 w-full flex justify-end items-center space-x-2">
             <ShareDialog
               fullImageData={fullImageData || undefined}
               partialImageData={partialImageData}
             />
+            <InfoToggle toggleInfo={toggleInfo} />
           </div>
         </div>
         <div className="flex flex-col space-y-2">
