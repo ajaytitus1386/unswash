@@ -12,8 +12,10 @@ import Image from "next/image"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import {
   DownloadIcon,
+  FacebookIcon,
   InfoIcon,
   InstagramIcon,
+  LinkIcon,
   Share2Icon,
   ThumbsUpIcon,
   TwitterIcon,
@@ -26,10 +28,83 @@ import { fetchUserProfile } from "@/lib/data/users"
 import { Skeleton } from "./ui/skeleton"
 import { saveAs } from "file-saver"
 import { toast } from "./ui/use-toast"
+import { FacebookShareButton, TwitterShareButton } from "react-share"
 
 interface ImageDialogProps {
   children: React.ReactNode
   partialImageData: ImageCardData
+}
+
+interface ShareDialogProps {
+  fullImageData?: ImageFullData
+  partialImageData: ImageCardData
+}
+
+const ShareDialog: React.FC<ShareDialogProps> = ({
+  partialImageData,
+  fullImageData,
+}) => {
+  const imageUrl = fullImageData?.links?.html || partialImageData.links?.html
+  const copyToClipboard = async () => {
+    if ("clipboard" in navigator) {
+      await navigator.clipboard.writeText(imageUrl)
+      toast({
+        title: "Copied to clipboard!",
+        description: "You can now paste the link anywhere.",
+      })
+    } else {
+      toast({
+        title: "Uh oh, we couldn't copy the link!",
+        description: "Please try again later.",
+      })
+    }
+  }
+  return (
+    <Dialog>
+      <DialogTrigger
+        // onClick={copyToClipboard}
+        className="flex items-center justify-center px-2 py-1 rounded-md space-x-1 border-bg-light-tag text-bg-light-tag border-2 font-bold bg-black bg-opacity-0 hover:bg-opacity-25"
+      >
+        <Share2Icon size={16} />
+        <p>Share</p>
+      </DialogTrigger>
+      <DialogContent className="flex flex-col px-4 py-2 gap-1">
+        {/* Social Media Apps */}
+        <div className="flex items-center justify-between space-x-1 mx-auto">
+          <FacebookShareButton url={imageUrl}>
+            <FacebookIcon />
+          </FacebookShareButton>
+          <TwitterShareButton url={imageUrl}>
+            <TwitterIcon />
+          </TwitterShareButton>
+        </div>
+        {/* Link */}
+        <div>
+          <div className="flex items-center justify-center space-x-1">
+            <input
+              type="text"
+              className="w-auto cursor-copy select-all bg-bg-light-input dark:bg-bg-dark-input text-text-light-500 dark:text-text-dark-500 rounded-md py-2 px-4"
+              value={
+                "https://unsplash.com/photos/" +
+                (fullImageData?.id || partialImageData.id)
+              }
+              readOnly
+            />
+            <Button
+              variant={"ghost"}
+              onClick={copyToClipboard}
+              className="font-bold rounded-md py-2 px-4 sm:py-4 sm:px-12"
+            >
+              <LinkIcon
+                className="text-text-light-500 dark:text-text-dark-500"
+                size={16}
+              />
+            </Button>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
 }
 
 const Tag = ({ children }: { children: string }) => {
@@ -75,23 +150,6 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
     )
   }
 
-  const copyToClipboard = async () => {
-    const imageUrl = fullImageData?.links?.html || partialImageData.links?.html
-
-    if ("clipboard" in navigator) {
-      await navigator.clipboard.writeText(imageUrl)
-      toast({
-        title: "Copied to clipboard!",
-        description: "You can now paste the link anywhere.",
-      })
-    } else {
-      toast({
-        title: "Uh oh, we couldn't copy the link!",
-        description: "Please try again later.",
-      })
-    }
-  }
-
   return (
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
@@ -110,14 +168,10 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
             blurDataURL={partialImageData.urls.small}
           />
           <div className="absolute bottom-4 right-4 w-full flex justify-end items-center space-x-2">
-            <Button
-              variant={"outline"}
-              onClick={copyToClipboard}
-              className="border-bg-light-tag text-bg-light-tag border-2 font-bold bg-black bg-opacity-25"
-            >
-              <Share2Icon size={16} />
-              Share
-            </Button>
+            <ShareDialog
+              fullImageData={fullImageData || undefined}
+              partialImageData={partialImageData}
+            />
           </div>
         </div>
         <div className="flex flex-col space-y-2">
