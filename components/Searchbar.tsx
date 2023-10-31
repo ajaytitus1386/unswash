@@ -28,6 +28,7 @@ const SearchBar = ({ variant, onClear }: SearchProps) => {
     setSearchQuery(e.target.value)
 
     const auto = await getAutoCompleteSuggestions(e.target.value)
+    if (!auto) return
     setAutocompleteSuggestions(auto)
   }
 
@@ -85,7 +86,7 @@ const SearchBar = ({ variant, onClear }: SearchProps) => {
       </form>
       <Popover>
         <PopoverTrigger ref={autocompletePopoverTrigger}></PopoverTrigger>
-        {autocompleteSuggestions.length > 0 && (
+        {autocompleteSuggestions?.length > 0 && (
           <PopoverContent
             onOpenAutoFocus={(e: Event) => e.preventDefault()}
             className={cn(

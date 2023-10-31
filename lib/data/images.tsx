@@ -102,11 +102,20 @@ export const searchImages = async (
 }
 
 export const getAutoCompleteSuggestions = async (query: string) => {
-  const uriQuery = encodeURIComponent(query)
+  if (!query) return
+  try {
+    const res = await axios.get("/api/autocomplete", {
+      params: {
+        query,
+      },
+    })
 
-  const res = await axios.get(`https://unsplash.com/nautocomplete/${uriQuery}`)
-
-  const auto: AutocompleteResponse = res.data
-
-  return auto.autocomplete
+    const data: AutocompleteResponse = res.data
+    return data.autocomplete
+  } catch (error: any) {
+    toast({
+      title: "Error",
+      description: "Something went wrong",
+    })
+  }
 }
