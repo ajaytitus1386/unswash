@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { ImageCardData, ImageFullData, ProfileData } from "@/lib/types"
 import Image from "next/image"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
@@ -115,13 +108,13 @@ const ShareDialog: React.FC<ShareDialogProps> = ({
 
 const InfoToggle: React.FC<InfoToggleProps> = ({ toggleInfo }) => {
   return (
-    <Button
+    <button
       onClick={toggleInfo}
       className="flex items-center justify-center px-2 py-1 rounded-md space-x-1 border-bg-light-tag text-bg-light-tag border-2 font-bold bg-black bg-opacity-0 hover:bg-opacity-25"
     >
       <InfoIcon size={16} />
       <p>Info</p>
-    </Button>
+    </button>
   )
 }
 
