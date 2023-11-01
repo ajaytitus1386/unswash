@@ -76,6 +76,7 @@ module.exports = {
             primary: "#FFFFFF",
             card: "#FFFFFF",
             success: "#3CB46E",
+            input: "#FFFFFF",
           },
           dark: {
             tag: "#ECECEC",
@@ -83,6 +84,7 @@ module.exports = {
             primary: "#232323",
             card: "#141414",
             success: "#3CB46E",
+            input: "#232323",
           },
         },
         //
