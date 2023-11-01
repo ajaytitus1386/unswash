@@ -1,4 +1,3 @@
-import { getAutoCompleteSuggestions } from "@/lib/data/images"
 import { AutocompleteResponse } from "@/lib/types"
 import axios from "axios"
 import { NextRequest, NextResponse } from "next/server"
@@ -8,7 +7,6 @@ export async function GET(req: NextRequest) {
   if (!query) {
     return new NextResponse("Missing query", { status: 400 })
   }
-  //   console.log(data)
   const uriQuery = encodeURIComponent(query)
 
   const res = await axios.get(`https://unsplash.com/nautocomplete/${uriQuery}`)
