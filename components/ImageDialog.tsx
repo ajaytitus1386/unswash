@@ -176,7 +176,7 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
             width={fullImageData?.width}
             src={
               imageError
-                ? "images/image404.png"
+                ? "/images/image404.png"
                 : fullImageData?.urls.full || partialImageData.urls.small
             }
             alt={fullImageData?.description || "alt"}
