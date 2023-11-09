@@ -9,6 +9,7 @@ import {
   InfoIcon,
   InstagramIcon,
   LinkIcon,
+  MoreVerticalIcon,
   Share2Icon,
   ThumbsUpIcon,
   TwitterIcon,
@@ -24,6 +25,7 @@ import { toast } from "./ui/use-toast"
 import { FacebookShareButton, TwitterShareButton } from "react-share"
 
 import { cn } from "@/lib/utils"
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 
 interface ImageDialogProps {
   children: React.ReactNode
@@ -37,6 +39,11 @@ interface ShareDialogProps {
 
 interface InfoToggleProps {
   toggleInfo: () => void
+}
+
+interface DownloadPopoverProps {
+  fullImageData?: ImageFullData
+  partialImageData: ImageCardData
 }
 
 const ShareDialog: React.FC<ShareDialogProps> = ({
@@ -115,6 +122,40 @@ const InfoToggle: React.FC<InfoToggleProps> = ({ toggleInfo }) => {
       <InfoIcon size={16} />
       <p>Info</p>
     </button>
+  )
+}
+
+const DownloadPopover: React.FC<DownloadPopoverProps> = ({
+  fullImageData,
+  partialImageData,
+}) => {
+  const downloadButtonClassname = ""
+
+  type Resolutions = "full" | "regular" | "small"
+
+  const downloadImage = async (res: Resolutions) => {
+    const url = fullImageData?.urls?.[res] || partialImageData.urls?.[res]
+    saveAs(url, `${fullImageData?.user?.username}-${fullImageData?.id}.jpg`)
+  }
+
+  return (
+    <Popover>
+      <PopoverTrigger className="bg-bg-light-success dark:bg-bg-dark-success font-bold text-white rounded-md py-2 px-2">
+        <MoreVerticalIcon
+          size={16}
+          className="text-text-light-500 dark:text-text-dark-500"
+        />
+      </PopoverTrigger>
+      <PopoverContent
+        side="bottom"
+        align="end"
+        className="flex flex-col space-y-2 items-start justify-start py-2 px-4 z-[50] w-fit bg-bg-light-success dark:bg-bg-dark-success border-none"
+      >
+        <button onClick={() => downloadImage("full")}>Highest</button>
+        <button onClick={() => downloadImage("regular")}>Regular</button>
+        <button onClick={() => downloadImage("small")}>Smallest</button>
+      </PopoverContent>
+    </Popover>
   )
 }
 
@@ -234,12 +275,19 @@ const ImageDialog: React.FC<ImageDialogProps> = ({
             </div>
             {/* Download */}
             <div className="flex flex-col space-y-1">
-              <Button
-                onClick={downloadImage}
-                className="bg-bg-light-success dark:bg-bg-dark-success font-bold text-white rounded-md py-2 px-4 sm:py-4 sm:px-12"
-              >
-                Download
-              </Button>
+              <div className="flex flex-row space-x-1">
+                <Button
+                  onClick={downloadImage}
+                  className="bg-bg-light-success dark:bg-bg-dark-success font-bold text-white rounded-md py-2 px-4 sm:py-4 sm:px-12"
+                >
+                  Download
+                </Button>
+                <DownloadPopover
+                  fullImageData={fullImageData || undefined}
+                  partialImageData={partialImageData}
+                />
+              </div>
+
               <div className="flex items-center justify-end space-x-2">
                 <div className="flex justify-center items-end space-x-1">
                   <DownloadIcon
