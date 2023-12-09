@@ -54,17 +54,26 @@ const SearchBar = ({ variant, onClear }: SearchProps) => {
   return (
     <>
       <form
-        onSubmit={(e) => e.preventDefault()}
+        data-test-id={`search-form-${variant}`}
+        onSubmit={(e) => {
+          e.preventDefault()
+          search(searchQuery)
+        }}
         className={cn(
           "flex space-x-1 px-2 py-1 justify-center items-center bg-bg-light-card dark:bg-bg-dark-card rounded-md",
           variant === "hero" ? "w-full" : "flex w-auto md:w-96"
         )}
       >
-        <button type="submit" onClick={() => search(searchQuery)}>
+        <button
+          data-test-id={`search-button-${variant}`}
+          type="submit"
+          onClick={() => search(searchQuery)}
+        >
           <SearchIcon className="text-text-light-300 dark:text-text-dark-300" />
         </button>
         {/* Search Input */}
         <Input
+          data-test-id={`search-input-${variant}`}
           ref={searchInputRef}
           className="bg-bg-light-card dark:bg-bg-dark-card border-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:ring-transparent"
           placeholder={
@@ -88,6 +97,7 @@ const SearchBar = ({ variant, onClear }: SearchProps) => {
         <PopoverTrigger ref={autocompletePopoverTrigger}></PopoverTrigger>
         {autocompleteSuggestions?.length > 0 && (
           <PopoverContent
+            data-test-id={`search-suggestions-${variant}`}
             onOpenAutoFocus={(e: Event) => e.preventDefault()}
             className={cn(
               "flex flex-col space-y-1 items-start justify-center w-[80vw] px-0 -mt-4 bg-bg-light-card dark:bg-bg-dark-card",
