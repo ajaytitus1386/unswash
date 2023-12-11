@@ -50,7 +50,11 @@ const NavElements = () => {
       </Link>
       <div className="flex items-center justify-start md:justify-center space-x-2">
         <SunMoonIcon className="text-text-light-600 dark:text-text-dark-600" />
-        <Switch checked={theme === "dark"} onCheckedChange={toggleTheme} />
+        <Switch
+          data-test-id={"theme-switch"}
+          checked={theme === "dark"}
+          onCheckedChange={toggleTheme}
+        />
       </div>
     </div>
   )
