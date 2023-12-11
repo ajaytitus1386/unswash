@@ -14,6 +14,15 @@ export default defineConfig({
   },
 
   component: {
+    env: {
+      "cypress-watch-and-reload": {
+        watch: ["app/**/*", "components/**/*", "lib/**/*"],
+      },
+    },
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+      return require("cypress-watch-and-reload/plugins")(on, config)
+    },
     devServer: {
       framework: "next",
       bundler: "webpack",
