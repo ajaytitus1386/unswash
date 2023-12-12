@@ -18,16 +18,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <AppProvider>
-        <body
-          className={`${montserrat.className} flex flex-col h-screen w-screen max-w-full bg-bg-light-primary dark:bg-bg-dark-primary`}
-        >
+      <body
+        className={`${montserrat.className} flex flex-col h-screen w-screen max-w-full bg-bg-light-primary dark:bg-bg-dark-primary`}
+      >
+        <AppProvider>
           <Navbar />
           {/* Adjust for fixed Navbar */}
           <main className="mt-20">{children}</main>
           <Toaster />
-        </body>
-      </AppProvider>
+        </AppProvider>
+      </body>
     </html>
   )
 }
