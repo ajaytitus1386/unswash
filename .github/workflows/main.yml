@@ -52,4 +52,4 @@ jobs:
       - name: Cypress run
         run: |
             npm install cypress
-            npx cypress run --parallel
+            npx cypress run --key=dummy --parallel
