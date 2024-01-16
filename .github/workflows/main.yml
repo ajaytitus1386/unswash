@@ -47,11 +47,9 @@ jobs:
           path: .next
 
       - name: Set up environment
-        run: echo "CYPRESS_RECORD_KEY=dummy" >> $GITHUB_ENV
-
+        run: echo "CYPRESS_CI=true" >> $GITHUB_ENV
+  
       - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          parallel: true
-          build: npm run build
-          start: npm run start
+        run: |
+            npm install cypress
+            npx cypress run --parallel
