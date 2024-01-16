@@ -21,9 +21,9 @@ jobs:
           build: npm run build
 
       - name: Save build folder
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
-          name: build
+          name: Build
           if-no-files-found: error
           path: .next
 
@@ -43,7 +43,7 @@ jobs:
       - name: Download the build folder
         uses: actions/download-artifact@v3
         with:
-          name: build
+          name: Build
           path: .next
 
       - name: Cypress run
