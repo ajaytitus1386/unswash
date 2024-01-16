@@ -1,6 +1,7 @@
 import { defineConfig } from "cypress"
 
 export default defineConfig({
+  projectId: "abcdef",
   e2e: {
     env: {
       "cypress-watch-and-reload": {
