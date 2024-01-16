@@ -50,6 +50,5 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           parallel: true
-          group: 'UI-Chrome'
           build: npm run build
           start: npm run start
