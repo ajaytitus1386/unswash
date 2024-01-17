@@ -20,12 +20,12 @@ jobs:
           runTests: false
           build: npm run build
 
-      - name: Save build folder
-        uses: actions/upload-artifact@v3
-        with:
-          name: Build
-          if-no-files-found: error
-          path: .next
+      # - name: Save build folder
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: Build
+      #     if-no-files-found: error
+      #     path: .next
 
   cypress-run:
     runs-on: ubuntu-22.04
@@ -44,7 +44,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           runTests: true
-          build: npm run build
+          # build: npm run build
           start: npm run start
           wait-on: 'http://localhost:3000'
           browser: chrome
