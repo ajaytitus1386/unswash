@@ -1,10 +1,10 @@
 name: Unswash E2E on Chrome
 
-on: [push]
-# on:
-#   push:
-#     branches:
-#       - main
+# on: [push]
+on:
+  push:
+    branches:
+      - dummy
 
 jobs:
   install:
