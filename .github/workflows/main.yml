@@ -16,6 +16,7 @@ jobs:
       - name: Cypress install
         uses: cypress-io/github-action@v6
         with:
+          working-directory: ./app
           # Disable running of tests within install job
           runTests: false
           build: npm run build
@@ -43,6 +44,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          working-directory: ./app
           runTests: true
           # build: npm run build
           start: npm run start
