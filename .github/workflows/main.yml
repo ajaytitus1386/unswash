@@ -4,7 +4,7 @@ name: Unswash E2E on Chrome
 on:
   push:
     branches:
-      - dummy
+      - cypress-testing
 
 jobs:
   install:
