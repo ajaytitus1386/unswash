@@ -19,6 +19,7 @@ const Home = () => {
 
   // Fetch initial images
   useEffect(() => {
+    // Adding a change in app/ directory to trigger a workflow
     async function getHomeData() {
       const initialImages = await fetchHomeImages()
       if (!initialImages) return
