@@ -2,7 +2,7 @@ name: Unswash E2E on Chrome
 
 # on: [push]
 on:
-  push:
+  pull_request:
     branches:
       - cypress-testing
     paths:
