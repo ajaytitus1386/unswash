@@ -43,9 +43,10 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          install: npm ci --force
           runTests: true
           build: npm run build
-          start: npm run start
+          start: npm start
           command: npx cypress run --browser chrome --headless
           wait-on: 'http://localhost:3000'
           
