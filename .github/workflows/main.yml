@@ -46,6 +46,6 @@ jobs:
           runTests: true
           # build: npm run build
           start: npm run start
+          command: npx cypress run --browser chrome --headless
           wait-on: 'http://localhost:3000'
-          browser: chrome
           
