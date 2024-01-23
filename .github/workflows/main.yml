@@ -2,17 +2,9 @@ name: Unswash E2E on Chrome
 
 # on: [push]
 on:
-  pull_request:
-    types: 
-      - opened
+  push:
     branches:
       - cypress-testing
-  workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch to run Cypress tests on'
-        required: true
-        default: 'cypress-testing'
 
 jobs:
   install:
