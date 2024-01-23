@@ -3,6 +3,8 @@ name: Unswash E2E on Chrome
 # on: [push]
 on:
   pull_request:
+    types: 
+      - opened
     branches:
       - cypress-testing
     paths:
