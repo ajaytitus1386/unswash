@@ -1,27 +1,30 @@
 name: Unswash E2E on Chrome
 
-on: [push]
-# on:
-#   push:
-#     branches:
-#       - main
+# on: [push]
+on:
+  push:
+    branches:
+      - cypress-testing
+      - main
+  pull_request_review:
+    types: [submitted]
+  workflow_dispatch:
 
 jobs:
-  install:
+  cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      # - uses: actions/setup-node@v1
-      #   with:
-      #     node-version: 12
-      # - run: npm install
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          project: ./cypress
-          browser: chrome
-          command: yarn run cypress run --headless --browser chrome
-          build: yarn build
-          start: yarn start
-          wait-on: "http://localhost:3000"
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Install Dependencies
+          run: npm install --force
+        - name: Cypress Run
+          uses: cypress-io/github-action@v6
+          with:
+              install-command: npm ci --force
+              browser: chrome
+              build: npm run build
+              start: npm start
+              command: npx cypress run --e2e --browser chrome --headless
+              wait-on: 'http://localhost:3000'
+          
